@@ -3,6 +3,8 @@ import {
   STOREMETHEUS_REVIEWED,
   buildContract,
   canonicalUrls,
+  desiredUrls,
+  greenmarkStore,
   platformNotes,
   storeTemplates,
   storemetheusSources,
@@ -62,6 +64,7 @@ ${canonicalUrls.contract}`;
             <div class="actions" aria-label="Primary actions">
               <a class="button primary" href={canonicalUrls.markdown}>Agent markdown</a>
               <a class="button" href={canonicalUrls.contract}>JSON contract</a>
+              <a class="button" href={greenmarkStore.routes.human}>Greenmark blueprint</a>
             </div>
           </div>
           <figure>
@@ -103,6 +106,23 @@ ${canonicalUrls.contract}`;
           <p>
             Storemetheus turns that into a governed surface: who owns it, who can install it, what
             it exposes, how it updates, how it is tested, and where an agent should look first.
+          </p>
+        </div>
+      </section>
+
+      <section class="section two" aria-labelledby="dns-heading">
+        <div>
+          <p class="kicker">Current website status</p>
+          <h2 id="dns-heading">Use the live Railway URL until branded DNS resolves.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            The intended branded host remains <a href={desiredUrls.human}>{desiredUrls.human}</a>.
+            Until DNS is applied in the Cloudflare account that owns eidosagi.com, Storemetheus
+            uses the verified Railway hostname for working links and agent contracts.
+          </p>
+          <p>
+            Current live root: <a href={canonicalUrls.human}>{canonicalUrls.human}</a>
           </p>
         </div>
       </section>
@@ -218,6 +238,7 @@ ${canonicalUrls.contract}`;
         <div class="doc-links">
           <a href="/docs/company-store-operating-guide.md">Company-store guide</a>
           <a href="/docs/case-studies/greenmark-private-plugin-store.md">Greenmark case study</a>
+          <a href={greenmarkStore.routes.human}>Greenmark store blueprint</a>
         </div>
       </section>
 

@@ -19,6 +19,11 @@ Daniel owns the initial process. The store should be designed for multiple Green
 - Initial repo home: Greenmark-owned private GitHub organization or private repo
 - Visibility: private
 - Review cadence: biweekly while active, monthly once stable
+- Public blueprint: `/stores/greenmark`
+- Agent contract: `/stores/greenmark.md`
+- Machine-readable contract: `/.well-known/greenmark-store.json`
+
+The public blueprint must not contain secrets, credentials, customer data, private repo URLs, or internal-only operational evidence. Its job is to tell agents how to bootstrap and reason about the private Greenmark store, not to replace the private store.
 
 ## Initial Plugin Domains
 
