@@ -1,6 +1,6 @@
 # Eidos Storemetheus
 
-Eidos Storemetheus is a forge for building governed Codex plugin stores.
+Eidos Storemetheus is a deployable guide and plugin for building governed Codex plugin stores.
 
 It exists for organizations that want AI agents to carry durable company know-how without turning that know-how into scattered prompts, private chat memory, or one-off scripts. A plugin store is the distribution surface. The store owner is accountable for trust.
 
@@ -45,8 +45,19 @@ See `skills/build-plugin-stores/SKILL.md` for the full Codex workflow.
 ## Canonical Surfaces
 
 - Source repo: `https://github.com/eidos-agi/eidos-storemetheus`
-- Human guide: `https://eidosagi.com/storemetheus`
-- Agent markdown: `https://eidosagi.com/storemetheus.md`
-- Machine contract: `https://eidosagi.com/.well-known/storemetheus.json`
+- Human guide: `https://storemetheus.eidosagi.com/`
+- Agent markdown: `https://storemetheus.eidosagi.com/storemetheus.md`
+- Machine contract: `https://storemetheus.eidosagi.com/.well-known/storemetheus.json`
+- Agent index: `https://storemetheus.eidosagi.com/llms.txt`
+
+## Local Development
+
+```bash
+npm install
+npm run build
+npm run dev
+```
+
+Railway deployment is managed through `railguey`, using a project-scoped `RAILWAY_TOKEN` in `.env.local`.
 
 The Eidos marketplace should publish this plugin from this repository. Do not treat a marketplace copy or local cache as the source of truth.

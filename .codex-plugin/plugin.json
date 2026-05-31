@@ -7,7 +7,7 @@
     "email": "hello@eidosagi.com",
     "url": "https://github.com/eidos-agi"
   },
-  "homepage": "https://github.com/eidos-agi/eidos-storemetheus",
+  "homepage": "https://storemetheus.eidosagi.com/",
   "repository": "https://github.com/eidos-agi/eidos-storemetheus",
   "license": "MIT",
   "keywords": [
@@ -33,7 +33,7 @@
       "Enterprise AI Controls",
       "Review Gates"
     ],
-    "websiteURL": "https://github.com/eidos-agi/eidos-storemetheus",
+    "websiteURL": "https://storemetheus.eidosagi.com/",
     "privacyPolicyURL": "https://github.com/eidos-agi/eidos-storemetheus/blob/main/SECURITY.md",
     "termsOfServiceURL": "https://github.com/eidos-agi/eidos-storemetheus/blob/main/LICENSE",
     "defaultPrompt": [
