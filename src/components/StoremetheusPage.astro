@@ -1,0 +1,573 @@
+---
+import {
+  STOREMETHEUS_REVIEWED,
+  buildContract,
+  canonicalUrls,
+  platformNotes,
+  storeTemplates,
+  storemetheusSources,
+  validationSurfaces,
+} from '../lib/storemetheus';
+
+const title = 'Storemetheus';
+const agentPrompt = `Use Storemetheus to design a private plugin store.
+
+Goal:
+- owner:
+- audience:
+- host agents:
+- first three workflows:
+- approval policy:
+- evidence needed before launch:
+
+Read:
+${canonicalUrls.markdown}
+${canonicalUrls.contract}`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Eidos AGI</title>
+    <meta
+      name="description"
+      content="An agent-readable operating guide for building governed plugin stores for companies, teams, and individuals."
+    />
+    <link rel="icon" href="/logo.svg" />
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <nav class="topline" aria-label="Storemetheus links">
+          <a class="brand" href="/">
+            <img src="/logo.svg" alt="" />
+            <span>Eidos Storemetheus</span>
+          </a>
+          <div>
+            <a href={canonicalUrls.markdown}>Markdown</a>
+            <a href={canonicalUrls.contract}>JSON</a>
+            <a href={canonicalUrls.repo}>Repo</a>
+          </div>
+        </nav>
+
+        <section class="hero-grid">
+          <div>
+            <p class="kicker">Reviewed {STOREMETHEUS_REVIEWED}</p>
+            <h1>Build the store before the agents scatter.</h1>
+            <p class="lede">
+              A practical operating guide for companies that want AI work to spread through teams
+              without losing ownership, install policy, approvals, and proof.
+            </p>
+            <div class="actions" aria-label="Primary actions">
+              <a class="button primary" href={canonicalUrls.markdown}>Agent markdown</a>
+              <a class="button" href={canonicalUrls.contract}>JSON contract</a>
+            </div>
+          </div>
+          <figure>
+            <picture>
+              <source srcset="/header-1500x500.webp" type="image/webp" />
+              <img src="/header-1500x500.png" alt="Eidos AGI visual banner" />
+            </picture>
+            <figcaption>Source, marketplace, cache, config, active session.</figcaption>
+          </figure>
+        </section>
+      </header>
+
+      <section class="strip" aria-label="Core thesis">
+        <div>
+          <span>Store</span>
+          <strong>Discovery, trust, and installation.</strong>
+        </div>
+        <div>
+          <span>Creator</span>
+          <strong>A store-local agent, not a generic brand.</strong>
+        </div>
+        <div>
+          <span>Evidence</span>
+          <strong>Proof across every runtime surface.</strong>
+        </div>
+      </section>
+
+      <section class="section two" aria-labelledby="why-heading">
+        <div>
+          <p class="kicker">Why this matters</p>
+          <h2 id="why-heading">Plugins are becoming the company distribution layer for AI.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Teams are already building instructions, skills, tools, MCP servers, playbooks,
+            prompts, approval loops, and automations. Without a store, those assets become private
+            folklore.
+          </p>
+          <p>
+            Storemetheus turns that into a governed surface: who owns it, who can install it, what
+            it exposes, how it updates, how it is tested, and where an agent should look first.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="contract-heading">
+        <div class="section-head">
+          <p class="kicker">Build contract</p>
+          <h2 id="contract-heading">The store has to answer six questions.</h2>
+        </div>
+        <div class="contract-grid">
+          {buildContract.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{item}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="platforms-heading">
+        <div class="section-head">
+          <p class="kicker">Platform map</p>
+          <h2 id="platforms-heading">Different hosts want different store assets.</h2>
+          <p>
+            Storemetheus keeps the pattern portable across the tools teams actually use. The notes
+            below are a current snapshot, linked to primary docs.
+          </p>
+        </div>
+        <div class="platforms">
+          {platformNotes.map((platform) => (
+            <article class="platform">
+              <h3>{platform.name}</h3>
+              <p>{platform.fit}</p>
+              <dl>
+                <div>
+                  <dt>Distribute</dt>
+                  <dd>{platform.distribution}</dd>
+                </div>
+                <div>
+                  <dt>Move</dt>
+                  <dd>{platform.storemetheusMove}</dd>
+                </div>
+              </dl>
+              <div class="source-links">
+                {platform.sources.map((source) => (
+                  <a href={source}>Source</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section two" aria-labelledby="creator-heading">
+        <div>
+          <p class="kicker">Creator pattern</p>
+          <h2 id="creator-heading">Every store gets its own creator.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Users should not need to ask for Felix. The store should expose the creator that matches
+            the world they are operating in: Greenmark Plugin Creator, Eidos Plugin Creator, or a
+            client-specific creator.
+          </p>
+          <p>
+            Felix can stay behind the scenes as the scaffolding and validation engine. The
+            user-facing contract should be store-local, permissioned, and documented in the store.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="templates-heading">
+        <div class="section-head">
+          <p class="kicker">Templates</p>
+          <h2 id="templates-heading">Three store shapes cover most serious work.</h2>
+        </div>
+        <div class="template-grid">
+          {storeTemplates.map((template) => (
+            <article>
+              <h3>{template.name}</h3>
+              <p><strong>Home:</strong> {template.path}</p>
+              <p><strong>Creator:</strong> {template.creator}</p>
+              <p><strong>Governance:</strong> {template.governance}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section agent" aria-labelledby="agent-heading">
+        <div>
+          <p class="kicker">For agents</p>
+          <h2 id="agent-heading">Start here, then prove every surface.</h2>
+          <p>Use this prompt when an operator asks for a new company or personal plugin store.</p>
+        </div>
+        <pre><code>{agentPrompt}</code></pre>
+      </section>
+
+      <section class="section" aria-labelledby="proof-heading">
+        <div class="section-head">
+          <p class="kicker">Validation</p>
+          <h2 id="proof-heading">A store is not ready until it is visible where agents run.</h2>
+        </div>
+        <div class="proof-row">
+          {validationSurfaces.map((surface) => <span>{surface}</span>)}
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="docs-heading">
+        <div class="section-head">
+          <p class="kicker">Operating docs</p>
+          <h2 id="docs-heading">The reusable pattern lives with the repo.</h2>
+        </div>
+        <div class="doc-links">
+          <a href="/docs/company-store-operating-guide.md">Company-store guide</a>
+          <a href="/docs/case-studies/greenmark-private-plugin-store.md">Greenmark case study</a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="sources-heading">
+        <div class="section-head">
+          <p class="kicker">Maintenance</p>
+          <h2 id="sources-heading">This page should age visibly.</h2>
+          <p>
+            Refresh the official docs and install paths before making claims about a host.
+          </p>
+        </div>
+        <div class="sources">
+          {storemetheusSources.map((source) => <a href={source.url}>{source.label}</a>)}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color-scheme: light;
+    --bg: #f7f4ed;
+    --ink: #171614;
+    --muted: #676057;
+    --line: rgba(23, 22, 20, 0.15);
+    --panel: #fffdf8;
+    --accent: #264f46;
+    --accent-2: #a44f2a;
+    --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  main {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 0;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+
+  .topline div {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+  }
+
+  .brand img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hero {
+    min-height: 92vh;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+    gap: clamp(32px, 7vw, 84px);
+    align-items: center;
+    padding: 52px 0 72px;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 11ch;
+    margin-bottom: 24px;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    line-height: 0.94;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    max-width: 780px;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    letter-spacing: 0;
+  }
+
+  .kicker {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .lede {
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 1.2rem;
+    line-height: 1.65;
+  }
+
+  .actions,
+  .doc-links,
+  .source-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .button,
+  .doc-links a,
+  .source-links a,
+  .sources a {
+    min-height: 42px;
+    padding: 11px 15px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: rgba(255, 253, 248, 0.72);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+
+  .primary {
+    background: var(--accent);
+    color: #fffdf8;
+  }
+
+  figure {
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--panel);
+  }
+
+  figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    object-fit: cover;
+  }
+
+  figcaption {
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+  }
+
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .strip div {
+    min-height: 124px;
+    padding: 24px;
+    border-right: 1px solid var(--line);
+  }
+
+  .strip div:last-child {
+    border-right: 0;
+  }
+
+  .strip span,
+  dt {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--accent-2);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+  }
+
+  .section {
+    padding: clamp(56px, 9vw, 108px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(28px, 7vw, 84px);
+  }
+
+  .prose p,
+  .section-head p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .contract-grid,
+  .platforms,
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  article {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 253, 248, 0.66);
+  }
+
+  .contract-grid article,
+  .template-grid article,
+  .platform {
+    padding: 22px;
+  }
+
+  .contract-grid span {
+    color: var(--accent-2);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+
+  .contract-grid p,
+  .template-grid p,
+  .platform p,
+  dd {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  dl {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .agent {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  pre {
+    overflow: auto;
+    margin: 0;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #171614;
+    color: #fffdf8;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .proof-row,
+  .sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .proof-row span {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+  }
+
+  @media (max-width: 840px) {
+    main {
+      width: min(100% - 24px, 680px);
+    }
+
+    .topline,
+    .hero-grid,
+    .strip,
+    .two,
+    .contract-grid,
+    .platforms,
+    .template-grid,
+    .agent {
+      grid-template-columns: 1fr;
+    }
+
+    .topline {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 17vw, 5.2rem);
+    }
+
+    .strip div {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .strip div:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>
