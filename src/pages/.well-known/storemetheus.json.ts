@@ -3,6 +3,8 @@ import {
   STOREMETHEUS_REVIEWED,
   buildContract,
   canonicalUrls,
+  desiredUrls,
+  greenmarkStore,
   platformNotes,
   storeTemplates,
   storemetheusSources,
@@ -20,8 +22,18 @@ export const GET: APIRoute = () => {
         reviewed: STOREMETHEUS_REVIEWED,
         purpose: 'Build governed plugin stores for individuals, teams, and companies.',
         canonical: canonicalUrls,
+        desiredCanonical: desiredUrls,
         buildContract,
         storeTemplates,
+        stores: [
+          {
+            name: greenmarkStore.name,
+            visibility: greenmarkStore.visibility,
+            creator: greenmarkStore.creator,
+            routes: greenmarkStore.routes,
+            live: greenmarkStore.live,
+          },
+        ],
         platformNotes,
         validationSurfaces,
         creatorPattern:

@@ -7,7 +7,7 @@
     "email": "hello@eidosagi.com",
     "url": "https://github.com/eidos-agi"
   },
-  "homepage": "https://storemetheus.eidosagi.com/",
+  "homepage": "https://storemetheus-production.up.railway.app/",
   "repository": "https://github.com/eidos-agi/eidos-storemetheus",
   "license": "MIT",
   "keywords": [

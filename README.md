@@ -45,10 +45,12 @@ See `skills/build-plugin-stores/SKILL.md` for the full Codex workflow.
 ## Canonical Surfaces
 
 - Source repo: `https://github.com/eidos-agi/eidos-storemetheus`
-- Human guide: `https://storemetheus.eidosagi.com/`
-- Agent markdown: `https://storemetheus.eidosagi.com/storemetheus.md`
-- Machine contract: `https://storemetheus.eidosagi.com/.well-known/storemetheus.json`
-- Agent index: `https://storemetheus.eidosagi.com/llms.txt`
+- Human guide: `https://storemetheus-production.up.railway.app/`
+- Agent markdown: `https://storemetheus-production.up.railway.app/storemetheus.md`
+- Machine contract: `https://storemetheus-production.up.railway.app/.well-known/storemetheus.json`
+- Agent index: `https://storemetheus-production.up.railway.app/llms.txt`
+- Desired branded host once DNS resolves: `https://storemetheus.eidosagi.com/`
+- Greenmark public blueprint: `https://storemetheus-production.up.railway.app/stores/greenmark`
 
 ## Local Development
 

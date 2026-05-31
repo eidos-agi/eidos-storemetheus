@@ -1,11 +1,90 @@
 export const STOREMETHEUS_REVIEWED = '2026-05-31';
 
+export const liveOrigin = 'https://storemetheus-production.up.railway.app';
+export const desiredOrigin = 'https://storemetheus.eidosagi.com';
+
 export const canonicalUrls = {
-  human: 'https://storemetheus.eidosagi.com/',
-  markdown: 'https://storemetheus.eidosagi.com/storemetheus.md',
-  llms: 'https://storemetheus.eidosagi.com/llms.txt',
-  contract: 'https://storemetheus.eidosagi.com/.well-known/storemetheus.json',
+  human: `${liveOrigin}/`,
+  markdown: `${liveOrigin}/storemetheus.md`,
+  llms: `${liveOrigin}/llms.txt`,
+  contract: `${liveOrigin}/.well-known/storemetheus.json`,
   repo: 'https://github.com/eidos-agi/eidos-storemetheus',
+};
+
+export const desiredUrls = {
+  human: `${desiredOrigin}/`,
+  markdown: `${desiredOrigin}/storemetheus.md`,
+  llms: `${desiredOrigin}/llms.txt`,
+  contract: `${desiredOrigin}/.well-known/storemetheus.json`,
+};
+
+export const greenmarkStore = {
+  name: 'Greenmark Store',
+  visibility: 'private-blueprint',
+  owner: 'Daniel',
+  audience: 'Greenmark operators, maintainers, and approved AI agents',
+  creator: 'Greenmark Plugin Creator',
+  reviewed: STOREMETHEUS_REVIEWED,
+  routes: {
+    human: '/stores/greenmark',
+    markdown: '/stores/greenmark.md',
+    contract: '/.well-known/greenmark-store.json',
+    caseStudy: '/docs/case-studies/greenmark-private-plugin-store.md',
+  },
+  live: {
+    human: `${liveOrigin}/stores/greenmark`,
+    markdown: `${liveOrigin}/stores/greenmark.md`,
+    contract: `${liveOrigin}/.well-known/greenmark-store.json`,
+  },
+  purpose:
+    'A private, skills-first plugin store for Greenmark recurring operations, governed approvals, deployment proof, and website maintenance workflows.',
+  domains: [
+    'holiday-management',
+    'gate-approvals',
+    'deployment-proof',
+    'cerebro-ops',
+    'website-maintenance',
+  ],
+  approvalRequiredFor: [
+    'Production deploys',
+    'DNS changes',
+    'Webflow publishes',
+    'Credential use',
+    'Customer data writes',
+    'Outbound messages',
+    'Permission changes',
+    'Destructive repo or database operations',
+  ],
+  firstSkills: [
+    {
+      name: 'holiday-management',
+      job:
+        'Check every two weeks for holidays roughly 30 days out, then drive modal creation, proof, and removal.',
+    },
+    {
+      name: 'gate-approval-proof',
+      job:
+        'Keep Gate, Lilandra, and Professor X roles separate while proving approval paths without human test clicking.',
+    },
+    {
+      name: 'deployment-proof',
+      job:
+        'Capture SHA, deploy ID, route protection, smoke output, and Linear evidence for production changes.',
+    },
+    {
+      name: 'website-maintenance',
+      job:
+        'Find the current website authority, make the smallest safe change, publish with approval, and prove the live state.',
+    },
+  ],
+  proofSurfaces: [
+    'source repo',
+    'private marketplace catalog',
+    'installed plugin cache',
+    'Codex active session',
+    'Linear issue',
+    'live URL proof',
+  ],
 };
 
 export const storemetheusSources = [
@@ -172,5 +251,42 @@ export function storemetheusMarkdown(): string {
     '## Guides',
     '- Company store operating guide: /docs/company-store-operating-guide.md',
     '- Greenmark private store case study: /docs/case-studies/greenmark-private-plugin-store.md',
+    '- Greenmark private store blueprint: /stores/greenmark.md',
+  ].join('\n');
+}
+
+export function greenmarkStoreMarkdown(): string {
+  return [
+    '# Greenmark Store',
+    '',
+    `Reviewed: ${greenmarkStore.reviewed}`,
+    `Visibility: ${greenmarkStore.visibility}`,
+    `Owner: ${greenmarkStore.owner}`,
+    `Creator plugin: ${greenmarkStore.creator}`,
+    '',
+    greenmarkStore.purpose,
+    '',
+    'This public page is only the no-secret operating blueprint. The actual Greenmark store should live in a Greenmark-owned private repo with explicit install policy, release notes, and approval evidence.',
+    '',
+    '## Initial domains',
+    ...greenmarkStore.domains.map((domain) => `- ${domain}`),
+    '',
+    '## First skills',
+    ...greenmarkStore.firstSkills.map((skill) => `- ${skill.name}: ${skill.job}`),
+    '',
+    '## Approval required',
+    ...greenmarkStore.approvalRequiredFor.map((item) => `- ${item}`),
+    '',
+    '## Proof surfaces',
+    ...greenmarkStore.proofSurfaces.map((surface) => `- ${surface}`),
+    '',
+    '## Holiday management contract',
+    'Every two weeks, look roughly 30 days ahead for relevant holidays. If a holiday affects Greenmark or HT Disposal site messaging, create or update the Linear work item, verify whether the current modal/interstitial should exist, guide the website modification, collect publish proof, and schedule removal proof.',
+    '',
+    '## Gate testing contract',
+    'Gate is where Daniel and future employees approve AI-requested actions. Professor X is the automated test actor. Lilandra is a QA function that temporarily enables Professor X. Gate and Lilandra are not the same system.',
+    '',
+    '## Website maintenance contract',
+    'The agent must identify the website authority first, avoid credential exposure, request approval for Webflow publishes or DNS writes, and finish with live-route proof plus issue-tracker evidence.',
   ].join('\n');
 }
