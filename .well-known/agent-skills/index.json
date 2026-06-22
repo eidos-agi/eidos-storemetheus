@@ -1,0 +1,9 @@
+{
+  "skills": [
+    {
+      "name": "build-plugin-stores",
+      "path": "skills/build-plugin-stores/SKILL.md",
+      "description": "Build a governed AI plugin store for a company, team, or client — marketplace repo, scoped plugin bundles, review gates, ownership rules, install proof"
+    }
+  ]
+}
