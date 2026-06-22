@@ -48,10 +48,10 @@ description: Audit an existing plugin store for structural, governance, and cont
 Run every check against the actual store files. For each: pass (skip), fail (add finding at correct severity).
 
 ### Structure (critical if missing)
-- `marketplace.json` exists at `.agents/plugins/marketplace.json`
+- Registry exists at `.agents/plugins/marketplace.json`
 - Each plugin has its own directory under `plugins/<name>/`
-- Each plugin directory has: `manifest.json`, `README.md`, `SKILL.md` or `skills/`
-- `marketplace.json` references only plugins that exist on disk
+- Each plugin directory has: `.codex-plugin/plugin.json` (Eidos standard) or `manifest.json` (legacy), `README.md`, and `SKILL.md` or `skills/`
+- Registry references only plugins that exist on disk
 
 ### Governance (critical if missing)
 - Store has a named owner (person or team, not "TBD")
@@ -59,10 +59,12 @@ Run every check against the actual store files. For each: pass (skip), fail (add
 - Private/public boundary is explicit — which plugins are internal-only
 - Removal policy exists — what triggers a plugin being pulled
 
-### Manifest quality (warning if wrong)
-- Each `manifest.json` has: `name`, `version`, `description`, `author`, `capabilities[]`
-- No `version` field is "0.0.0" or "TODO"
-- `capabilities[]` is specific, not generic ("Supabase queries" not "Database")
+### Plugin manifest quality (warning if wrong)
+- Each plugin has `.codex-plugin/plugin.json` with: `name`, `version`, `description`, `author`
+- Each plugin has `.claude-plugin/plugin.json` with the same fields
+- `interface.capabilities[]` is specific, not generic ("Supabase queries" not "Database")
+- `interface.defaultPrompt[]` has at least 2 concrete example prompts
+- No `version` is "0.0.0" or "TODO"
 - `description` is one sentence, not a paragraph
 
 ### Install proof (warning if missing)
@@ -74,6 +76,13 @@ Run every check against the actual store files. For each: pass (skip), fail (add
 - Each plugin README answers: what it does, what it needs, what it produces
 - No `TODO` or `PLACEHOLDER` in any file the client will see
 - Default prompts (if present) are specific — not "help me with X"
+
+### Repo standards — Storemetheus itself (warning if missing)
+- `.claude-plugin/plugin.json` exists with `name`, `version`, `description`, `author`
+- `.codex-plugin/plugin.json` exists with `name`, `interface.displayName`, `interface.defaultPrompt`
+- `AGENTS.md` exists
+- `CHANGELOG.md` follows Keep a Changelog format (`## [Unreleased]` header, `## [x.y.z] - date` versions)
+- `improve-storemetheus` and `doctor-storemetheus` skills are in the index
 
 ## How to run
 
