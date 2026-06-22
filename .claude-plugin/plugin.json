@@ -1,22 +1,13 @@
 {
   "name": "eidos-storemetheus",
-  "version": "0.1.0",
-  "description": "Build governed Codex plugin stores for companies that need trusted AI operating layers.",
+  "version": "1.0.0",
+  "description": "Build governed AI plugin stores for any organization. Defines trust surfaces, scoped bundles, audit trails, and install proofs.",
   "author": {
     "name": "Eidos AGI",
-    "email": "hello@eidosagi.com",
     "url": "https://github.com/eidos-agi"
   },
-  "homepage": "https://storemetheus-production.up.railway.app/",
+  "homepage": "https://github.com/eidos-agi/eidos-storemetheus",
   "repository": "https://github.com/eidos-agi/eidos-storemetheus",
   "license": "MIT",
-  "keywords": [
-    "eidos",
-    "plugin-store",
-    "codex",
-    "marketplace",
-    "governance",
-    "enterprise",
-    "private-plugins"
-  ]
+  "keywords": ["plugin-store", "governance", "agents", "eidos"]
 }
