@@ -4,6 +4,16 @@
       "name": "build-plugin-stores",
       "path": "skills/build-plugin-stores/SKILL.md",
       "description": "Build a governed AI plugin store for a company, team, or client — marketplace repo, scoped plugin bundles, review gates, ownership rules, install proof"
+    },
+    {
+      "name": "improve-storemetheus",
+      "path": "skills/improve-storemetheus/SKILL.md",
+      "description": "Propose improvements to Storemetheus — new governance rules, manifest field fixes, skill updates. Contract-shaped output with copy-pasteable apply steps."
+    },
+    {
+      "name": "doctor-storemetheus",
+      "path": "skills/doctor-storemetheus/SKILL.md",
+      "description": "Audit a plugin store for structural, governance, and content problems. Returns a scored health report (0–100) with severity-ranked findings and copy-pasteable fixes."
     }
   ]
 }
